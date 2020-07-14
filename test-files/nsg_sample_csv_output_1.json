@@ -1,0 +1,155 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "apiVersion": "2017-10-01",
+            "location": "[resourceGroup().location]",
+            "name": "nsg_sample_csv_input_1",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "Inbound_Security_Rule_1",
+                        "properties": {
+                            "access": "Allow",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRange": "*",
+                            "direction": "Inbound",
+                            "priority": 550,
+                            "protocol": "*",
+                            "sourceAddressPrefixes": [
+                                "100.100.100.0/00",
+                                "100.100.100.0/00",
+                                "100.100.100.0/00"
+                            ],
+                            "sourcePortRange": "*"
+                        }
+                    },
+                    {
+                        "name": "Inbound_Security_Rule_2",
+                        "properties": {
+                            "access": "Allow",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRanges": [
+                                "8081",
+                                "8083"
+                            ],
+                            "direction": "Inbound",
+                            "priority": 600,
+                            "protocol": "Tcp",
+                            "sourceAddressPrefixes": [
+                                "100.10.100.100",
+                                "100.100.10.10",
+                                "100.100.100.100",
+                                "100.10.100.100",
+                                "10.1.100.10",
+                                "10.1.100.10",
+                                "10.1.100.100"
+                            ],
+                            "sourcePortRange": "*"
+                        }
+                    },
+                    {
+                        "name": "Inbound_Security_Rule_3",
+                        "properties": {
+                            "access": "Allow",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRange": "*",
+                            "direction": "Inbound",
+                            "priority": 650,
+                            "protocol": "*",
+                            "sourceAddressPrefixes": [
+                                "10.1.100.10",
+                                "10.1.100.10",
+                                "10.1.100.100"
+                            ],
+                            "sourcePortRange": "*"
+                        }
+                    },
+                    {
+                        "name": "Inbound_Security_Rule_4",
+                        "properties": {
+                            "access": "Allow",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRanges": [
+                                "443",
+                                "8443",
+                                "12489",
+                                "5666",
+                                "5986",
+                                "5985",
+                                "80",
+                                "3389",
+                                "22"
+                            ],
+                            "direction": "Inbound",
+                            "priority": 750,
+                            "protocol": "Tcp",
+                            "sourceAddressPrefix": "10.100.100.0/00",
+                            "sourcePortRange": "*"
+                        }
+                    },
+                    {
+                        "name": "Inbound_Security_Rule_5",
+                        "properties": {
+                            "access": "Deny",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRange": "*",
+                            "direction": "Inbound",
+                            "priority": 2000,
+                            "protocol": "*",
+                            "sourceAddressPrefix": "100.100.100.0/00",
+                            "sourcePortRange": "*"
+                        }
+                    },
+                    {
+                        "name": "Inbound_Security_Rule_6",
+                        "properties": {
+                            "access": "Allow",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRanges": [
+                                "22",
+                                "3389"
+                            ],
+                            "direction": "Inbound",
+                            "priority": 2100,
+                            "protocol": "Tcp",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "sourcePortRange": "*"
+                        }
+                    },
+                    {
+                        "name": "Inbound_Security_Rule_7",
+                        "properties": {
+                            "access": "Allow",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRanges": [
+                                "1433",
+                                "1521"
+                            ],
+                            "direction": "Inbound",
+                            "priority": 2200,
+                            "protocol": "Tcp",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "sourcePortRange": "*"
+                        }
+                    },
+                    {
+                        "name": "Inbound_Security_Rule_8",
+                        "properties": {
+                            "access": "Deny",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "destinationPortRange": "*",
+                            "direction": "Inbound",
+                            "priority": 3000,
+                            "protocol": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "sourcePortRange": "*"
+                        }
+                    }
+                ]
+            },
+            "type": "Microsoft.Network/networkSecurityGroups"
+        }
+    ]
+}
